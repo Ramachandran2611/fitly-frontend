@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import Hero from "../components/Hero";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -21,26 +22,28 @@ export default function LoginPage() {
   }
 
   return (
-    <form className="auth-form" onSubmit={handleSubmit}>
-      <h2>Log in</h2>
-      {error && <p className="error">{error}</p>}
-      <label>
-        Email
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Log in</button>
-      <p>
-        No account? <Link to="/register">Register</Link>
-      </p>
-    </form>
+    <>
+      <Hero eyebrow="Fitly · Members" headline="Welcome back." compact />
+      <form className="auth-form" onSubmit={handleSubmit}>
+        {error && <p className="error">{error}</p>}
+        <label>
+          Email
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        </label>
+        <label>
+          Password
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </label>
+        <button type="submit">Log in</button>
+        <p>
+          No account? <Link to="/register">Register</Link>
+        </p>
+      </form>
+    </>
   );
 }

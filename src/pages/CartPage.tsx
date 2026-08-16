@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { apiGet, apiPatch, apiDelete } from "../api/client";
 import { useAuth } from "../context/AuthContext";
+import Hero from "../components/Hero";
 import type { CartResponse } from "../types";
 
 export default function CartPage() {
@@ -36,34 +37,39 @@ export default function CartPage() {
     loadCart();
   }
 
-  if (!isLoggedIn) {
-    return (
-      <p>
-        <Link to="/login">Log in</Link> to view your cart.
-      </p>
-    );
-  }
-
-  if (loading) return <p>Loading cart…</p>;
-  if (error) return <p>Something went wrong: {error}</p>;
-  if (!cart || cart.items.length === 0) return <p>Your cart is empty.</p>;
-
   return (
-    <div className="cart">
-      {cart.items.map((item) => (
-        <div className="cart-row" key={item.product_id}>
-          <span className="cart-name">{item.name}</span>
-          <input
-            type="number"
-            min={1}
-            value={item.quantity}
-            onChange={(e) => updateQuantity(item.product_id, Number(e.target.value))}
-          />
-          <span className="cart-subtotal">₹{item.subtotal.toFixed(2)}</span>
-          <button onClick={() => removeItem(item.product_id)}>Remove</button>
+    <>
+      <Hero eyebrow="Fitly · Your Cart" headline="Ready to check out?" compact />
+
+      {!isLoggedIn && (
+        <p>
+          <Link to="/login">Log in</Link> to view your cart.
+        </p>
+      )}
+      {isLoggedIn && loading && <p>Loading cart…</p>}
+      {isLoggedIn && error && <p>Something went wrong: {error}</p>}
+      {isLoggedIn && !loading && !error && (!cart || cart.items.length === 0) && (
+        <p>Your cart is empty.</p>
+      )}
+
+      {isLoggedIn && cart && cart.items.length > 0 && (
+        <div className="cart">
+          {cart.items.map((item) => (
+            <div className="cart-row" key={item.product_id}>
+              <span className="cart-name">{item.name}</span>
+              <input
+                type="number"
+                min={1}
+                value={item.quantity}
+                onChange={(e) => updateQuantity(item.product_id, Number(e.target.value))}
+              />
+              <span className="cart-subtotal">₹{item.subtotal.toFixed(2)}</span>
+              <button onClick={() => removeItem(item.product_id)}>Remove</button>
+            </div>
+          ))}
+          <p className="cart-total">Total: ₹{cart.total.toFixed(2)}</p>
         </div>
-      ))}
-      <p className="cart-total">Total: ₹{cart.total.toFixed(2)}</p>
-    </div>
+      )}
+    </>
   );
 }

@@ -59,6 +59,65 @@
   background: rgba(255, 255, 255, 0.32);
 }
 
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  margin: 0 -24px 32px;
+  padding: 56px 32px 64px;
+  background: var(--gradient);
+  border-radius: 0 0 28px 28px;
+  color: #fff;
+  background-image:
+    radial-gradient(circle at 8% 20%, rgba(255, 255, 255, 0.55) 0, rgba(255, 255, 255, 0) 3px),
+    radial-gradient(circle at 22% 65%, rgba(255, 255, 255, 0.4) 0, rgba(255, 255, 255, 0) 2px),
+    radial-gradient(circle at 38% 30%, rgba(255, 255, 255, 0.5) 0, rgba(255, 255, 255, 0) 4px),
+    radial-gradient(circle at 55% 78%, rgba(255, 255, 255, 0.35) 0, rgba(255, 255, 255, 0) 3px),
+    radial-gradient(circle at 68% 15%, rgba(255, 255, 255, 0.5) 0, rgba(255, 255, 255, 0) 2px),
+    radial-gradient(circle at 82% 55%, rgba(255, 255, 255, 0.4) 0, rgba(255, 255, 255, 0) 3px),
+    radial-gradient(circle at 92% 80%, rgba(255, 255, 255, 0.45) 0, rgba(255, 255, 255, 0) 2px),
+    radial-gradient(circle at 14% 88%, rgba(255, 255, 255, 0.3) 0, rgba(255, 255, 255, 0) 3px),
+    var(--gradient);
+}
+
+.hero-dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-topline {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-bottom: 34px;
+}
+
+.hero-headline {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 46px;
+  line-height: 1.12;
+  margin: 0;
+  max-width: 12ch;
+  text-wrap: balance;
+}
+
+.hero-compact {
+  padding: 30px 32px 34px;
+  border-radius: 0 0 20px 20px;
+}
+
+.hero-compact .hero-headline {
+  font-size: 30px;
+  max-width: none;
+}
+
 /* ---------- Product grid ---------- */
 
 .products-grid {
@@ -175,15 +234,6 @@
   border-radius: 16px;
   padding: 32px;
   box-shadow: 0 8px 28px rgba(108, 92, 231, 0.1);
-}
-
-.auth-form h2 {
-  margin: 0 0 6px;
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-size: 22px;
 }
 
 .auth-form label {

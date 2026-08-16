@@ -10,6 +10,8 @@
   --text-muted: #6b6b80;
   --border: #eae6ff;
   --gradient: linear-gradient(120deg, var(--primary) 0%, var(--pink) 55%, var(--secondary) 100%);
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Segoe UI", system-ui, Roboto, sans-serif;
 }
 
 * {
@@ -18,7 +20,7 @@
 
 body {
   margin: 0;
-  font-family: "Segoe UI", system-ui, Roboto, sans-serif;
+  font-family: var(--font-body);
   color: var(--text);
   background: var(--bg);
 }
