@@ -1,0 +1,70 @@
+.app {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.app-header {
+  margin-bottom: 24px;
+}
+
+.app-header h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.product-card h3 {
+  font-size: 15px;
+  margin: 0 0 6px;
+}
+
+.product-card .brand {
+  color: #666;
+  font-size: 13px;
+  margin: 0 0 8px;
+}
+
+.product-card .price {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+
+.product-card .discount {
+  color: #1a7a4c;
+}
+
+.product-card .original {
+  color: #999;
+  text-decoration: line-through;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.product-card .rating {
+  font-size: 13px;
+  color: #444;
+  margin: 0 0 6px;
+}
+
+.in-stock {
+  color: #1a7a4c;
+  font-size: 13px;
+}
+
+.out-of-stock {
+  color: #c0392b;
+  font-size: 13px;
+}
