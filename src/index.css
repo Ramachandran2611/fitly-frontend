@@ -1,15 +1,15 @@
 :root {
-  --primary: #ff6b35;
-  --primary-dark: #e8551f;
-  --secondary: #6c5ce7;
-  --teal: #00d9a3;
-  --pink: #ff3e80;
-  --bg: #f8f6ff;
+  --primary: #2f80ed;
+  --primary-dark: #1b5fc4;
+  --secondary: #142850;
+  --teal: #00b894;
+  --accent: #3ec9ff;
+  --bg: #f2f7ff;
   --surface: #ffffff;
-  --text: #1a1b25;
-  --text-muted: #6b6b80;
-  --border: #eae6ff;
-  --gradient: linear-gradient(120deg, var(--primary) 0%, var(--pink) 55%, var(--secondary) 100%);
+  --text: #10192b;
+  --text-muted: #5b6b88;
+  --border: #dde7f7;
+  --gradient: linear-gradient(120deg, var(--primary) 0%, var(--accent) 55%, var(--secondary) 100%);
   --font-display: "Fraunces", Georgia, serif;
   --font-body: "Segoe UI", system-ui, Roboto, sans-serif;
 }
