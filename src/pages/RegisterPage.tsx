@@ -1,11 +1,12 @@
 import { useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import Hero from "../components/Hero";
+import Logo from "../components/Logo";
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { register } = useAuth();
   const navigate = useNavigate();
@@ -22,29 +23,48 @@ export default function RegisterPage() {
   }
 
   return (
-    <>
-      <Hero eyebrow="Fitly · New here?" headline="Join Fitly." compact />
-      <form className="auth-form" onSubmit={handleSubmit}>
+    <div className="auth-page">
+      <form className="auth-card" onSubmit={handleSubmit}>
+        <div className="auth-card-logo">
+          <Logo />
+          <span>FITLY</span>
+        </div>
+        <p className="auth-card-subtitle">Create your account and start training</p>
+
         {error && <p className="error">{error}</p>}
+
         <label>
           Email
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </label>
         <label>
-          Password (min 6 characters)
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            minLength={6}
-            required
-          />
+          Password
+          <div className="password-field">
+            <input
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              minLength={6}
+              required
+            />
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowPassword((v) => !v)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
+          </div>
         </label>
-        <button type="submit">Register</button>
-        <p>
+        <p className="field-hint">Minimum 6 characters</p>
+
+        <button type="submit" className="auth-submit">Sign up</button>
+
+        <p className="auth-card-footer">
           Already have an account? <Link to="/login">Log in</Link>
         </p>
       </form>
-    </>
+    </div>
   );
 }
