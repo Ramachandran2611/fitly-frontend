@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { apiGet, apiPost } from "../api/client";
 import { useAuth } from "../context/AuthContext";
 import ProductIcon from "../components/ProductIcon";
@@ -22,6 +22,9 @@ export default function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get("search") ?? "";
   const activeCategory = searchParams.get("category");
+  const activeBrand = searchParams.get("brand");
+  const sort = searchParams.get("sort");
+  const location = useLocation();
 
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -39,18 +42,33 @@ export default function ProductsPage() {
     setLoading(true);
     const params = new URLSearchParams();
     if (activeCategory) params.set("category", activeCategory);
+    if (activeBrand) params.set("brand", activeBrand);
     if (search) params.set("search", search);
+    if (sort) params.set("sort", sort);
     const query = params.toString() ? `?${params.toString()}` : "";
     apiGet<Product[]>(`/products${query}`)
       .then(setProducts)
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
-  }, [activeCategory, search]);
+  }, [activeCategory, activeBrand, search, sort]);
+
+  useEffect(() => {
+    if (!location.hash) return;
+    const el = document.querySelector(location.hash);
+    el?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [location.hash, loading]);
 
   function selectCategory(slug: string | null) {
     const next = new URLSearchParams(searchParams);
     if (slug) next.set("category", slug);
     else next.delete("category");
+    setSearchParams(next);
+  }
+
+  function selectBrand(brand: string | null) {
+    const next = new URLSearchParams(searchParams);
+    if (brand) next.set("brand", brand);
+    else next.delete("brand");
     setSearchParams(next);
   }
 
@@ -71,6 +89,7 @@ export default function ProductsPage() {
   const dealsOnly = searchParams.get("deals") === "1";
   const visibleProducts = dealsOnly ? products.filter((p) => p.discount_price) : products;
   const topDeals = products.filter((p) => p.discount_price).slice(0, 4);
+  const brands = Array.from(new Set(products.map((p) => p.brand))).sort();
 
   return (
     <>
@@ -105,13 +124,14 @@ export default function ProductsPage() {
         <span>100% authentic, lab-tested supplements</span>
       </div>
 
-      <p className="section-title">Shop by category</p>
+      <p className="section-title" id="categories">Shop by category</p>
       <div className="category-tiles">
         <div
           className={activeCategory === null ? "category-tile active" : "category-tile"}
           onClick={() => selectCategory(null)}
         >
-          All
+          <ProductIcon seed={0} size={40} />
+          <span>All</span>
         </div>
         {categories.map((c) => (
           <div
@@ -119,10 +139,34 @@ export default function ProductsPage() {
             className={activeCategory === c.slug ? "category-tile active" : "category-tile"}
             onClick={() => selectCategory(c.slug)}
           >
-            {c.name}
+            <ProductIcon seed={c.id} size={40} />
+            <span>{c.name}</span>
           </div>
         ))}
       </div>
+
+      {brands.length > 0 && (
+        <>
+          <p className="section-title" id="brands">Shop by brand</p>
+          <div className="category-pills">
+            <button
+              className={activeBrand === null ? "pill active" : "pill"}
+              onClick={() => selectBrand(null)}
+            >
+              All brands
+            </button>
+            {brands.map((b) => (
+              <button
+                key={b}
+                className={activeBrand === b ? "pill active" : "pill"}
+                onClick={() => selectBrand(b)}
+              >
+                {b}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
 
       {!dealsOnly && topDeals.length > 0 && (
         <>
@@ -132,6 +176,9 @@ export default function ProductsPage() {
               const pct = Math.round((1 - Number(p.discount_price) / Number(p.price)) * 100);
               return (
                 <div className="deal-card" key={p.id}>
+                  <div className="deal-media">
+                    <ProductIcon seed={p.id} size={56} />
+                  </div>
                   <span className="deal-badge">-{pct}%</span>
                   <p className="deal-name">{p.name}</p>
                   <span className="deal-price">₹{p.discount_price}</span>
@@ -142,7 +189,9 @@ export default function ProductsPage() {
         </>
       )}
 
-      <p className="section-title">{dealsOnly ? "Deals" : "All products"}</p>
+      <p className="section-title" id="all-products">
+        {dealsOnly ? "Deals" : "All products"}
+      </p>
 
       {loading && <p>Loading products…</p>}
       {error && <p>Something went wrong: {error}</p>}

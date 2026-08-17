@@ -55,6 +55,12 @@ function App() {
           />
         </div>
         <nav>
+          <Link to="/">Home</Link>
+          <Link to="/#categories">Categories</Link>
+          <Link to="/#all-products">Products</Link>
+          <Link to="/?deals=1">Offers</Link>
+          <Link to="/?sort=newest">New Arrivals</Link>
+          <Link to="/#brands">Brands</Link>
           <Link to="/cart" className="cart-link">
             Cart
             {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}

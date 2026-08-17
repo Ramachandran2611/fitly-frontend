@@ -1,10 +1,10 @@
-export default function ProductIcon({ seed }: { seed: number }) {
+export default function ProductIcon({ seed, size = 88 }: { seed: number; size?: number }) {
   const tilt = (seed % 3) - 1;
   return (
     <svg
       viewBox="0 0 120 140"
-      width="88"
-      height="102"
+      width={size}
+      height={size * 1.16}
       role="img"
       aria-hidden="true"
       style={{ transform: `rotate(${tilt * 4}deg)` }}
