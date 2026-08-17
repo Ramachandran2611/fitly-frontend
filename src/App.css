@@ -115,6 +115,53 @@
   background: var(--lime-dark);
 }
 
+.profile-avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.profile-avatar-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: var(--surface-2);
+  color: var(--lime);
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+}
+
+.profile-avatar-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-avatar-remove {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: none;
+  background: var(--danger-bg);
+  color: var(--danger);
+  font-size: 9px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
 /* ---------- Hero (compact, on Cart page) ---------- */
 
 .hero {
@@ -275,6 +322,7 @@
 }
 
 .category-tile {
+  position: relative;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -293,6 +341,40 @@
 
 .category-tile svg {
   color: var(--lime);
+}
+
+.tile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.tile-image-input {
+  display: none;
+}
+
+.tile-image-add,
+.tile-image-remove {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  border: none;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 3px 7px;
+}
+
+.tile-image-add {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--lime);
+}
+
+.tile-image-remove {
+  background: var(--danger-bg);
+  color: var(--danger);
 }
 
 .category-tile.active {
@@ -738,6 +820,43 @@
   border-radius: 4px;
 }
 
+.practice-search {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.practice-search input {
+  flex: 1;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-size: 14px;
+  background: var(--surface-2);
+  color: #fff;
+}
+
+.practice-search input:focus {
+  outline: none;
+  border-color: var(--lime);
+}
+
+.practice-search button {
+  padding: 0 18px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.practice-search-clear {
+  border-color: var(--lime) !important;
+  color: var(--lime) !important;
+}
+
 .practice-form {
   display: flex;
   flex-direction: column;
@@ -746,6 +865,30 @@
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 24px;
+}
+
+.practice-form input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.practice-form-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.practice-form-actions button {
+  flex: 1;
+}
+
+.practice-delete {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.practice-delete:hover {
+  background: var(--danger-bg);
+  filter: brightness(1.15);
 }
 
 .practice-form label {
@@ -799,6 +942,7 @@
 }
 
 .practice-image-holder {
+  position: relative;
   width: 100%;
   height: 160px;
   border: 1.5px dashed var(--border);
@@ -807,6 +951,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.practice-image-remove {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  border: none;
+  border-radius: 999px;
+  background: var(--danger-bg);
+  color: var(--danger);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  cursor: pointer;
 }
 
 .practice-image-holder img {

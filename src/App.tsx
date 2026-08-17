@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import CartPage from "./pages/CartPage";
 import AddProductPage from "./pages/AddProductPage";
+import ProfileAvatar from "./components/ProfileAvatar";
 import { useAuth } from "./context/AuthContext";
 import { apiGet } from "./api/client";
 import type { CartResponse } from "./types";
@@ -68,7 +69,10 @@ function App() {
             {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
           </Link>
           {isLoggedIn ? (
-            <button onClick={handleLogout}>Log out</button>
+            <>
+              <ProfileAvatar />
+              <button onClick={handleLogout}>Log out</button>
+            </>
           ) : (
             <Link to="/login">Log in</Link>
           )}

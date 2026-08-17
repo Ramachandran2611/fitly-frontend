@@ -4,7 +4,8 @@ import { apiGet, apiPost } from "../api/client";
 import { useAuth } from "../context/AuthContext";
 import ProductIcon from "../components/ProductIcon";
 import HeroIllustration from "../components/HeroIllustration";
-import { getPracticeProducts, onPracticeProductsChanged } from "../practiceProducts";
+import CategoryTile from "../components/CategoryTile";
+import { applyPracticeEdits, getPracticeProducts, onPracticeProductsChanged } from "../practiceProducts";
 import type { Product } from "../types";
 
 interface Category {
@@ -92,7 +93,7 @@ export default function ProductsPage() {
     setTimeout(() => setAddedId(null), 1500);
   }
 
-  const allProducts = [...practiceProducts, ...products];
+  const allProducts = [...practiceProducts, ...applyPracticeEdits(products)];
   const dealsOnly = searchParams.get("deals") === "1";
   const visibleProducts = dealsOnly ? allProducts.filter((p) => p.discount_price) : allProducts;
   const topDeals = allProducts.filter((p) => p.discount_price).slice(0, 4);
@@ -133,22 +134,22 @@ export default function ProductsPage() {
 
       <p className="section-title" id="categories">Shop by category</p>
       <div className="category-tiles">
-        <div
-          className={activeCategory === null ? "category-tile active" : "category-tile"}
-          onClick={() => selectCategory(null)}
-        >
-          <ProductIcon seed={0} size={40} />
-          <span>All</span>
-        </div>
+        <CategoryTile
+          slug="all"
+          label="All"
+          seed={0}
+          active={activeCategory === null}
+          onSelect={() => selectCategory(null)}
+        />
         {categories.map((c) => (
-          <div
+          <CategoryTile
             key={c.id}
-            className={activeCategory === c.slug ? "category-tile active" : "category-tile"}
-            onClick={() => selectCategory(c.slug)}
-          >
-            <ProductIcon seed={c.id} size={40} />
-            <span>{c.name}</span>
-          </div>
+            slug={c.slug}
+            label={c.name}
+            seed={c.id}
+            active={activeCategory === c.slug}
+            onSelect={() => selectCategory(c.slug)}
+          />
         ))}
       </div>
 
