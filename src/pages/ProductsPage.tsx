@@ -4,6 +4,7 @@ import { apiGet, apiPost } from "../api/client";
 import { useAuth } from "../context/AuthContext";
 import ProductIcon from "../components/ProductIcon";
 import HeroIllustration from "../components/HeroIllustration";
+import { getPracticeProducts, onPracticeProductsChanged } from "../practiceProducts";
 import type { Product } from "../types";
 
 interface Category {
@@ -27,6 +28,7 @@ export default function ProductsPage() {
   const location = useLocation();
 
   const [products, setProducts] = useState<Product[]>([]);
+  const [practiceProducts, setPracticeProducts] = useState<Product[]>(getPracticeProducts());
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -36,6 +38,10 @@ export default function ProductsPage() {
 
   useEffect(() => {
     apiGet<Category[]>("/categories").then(setCategories).catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    return onPracticeProductsChanged(() => setPracticeProducts(getPracticeProducts()));
   }, []);
 
   useEffect(() => {
@@ -86,10 +92,11 @@ export default function ProductsPage() {
     setTimeout(() => setAddedId(null), 1500);
   }
 
+  const allProducts = [...practiceProducts, ...products];
   const dealsOnly = searchParams.get("deals") === "1";
-  const visibleProducts = dealsOnly ? products.filter((p) => p.discount_price) : products;
-  const topDeals = products.filter((p) => p.discount_price).slice(0, 4);
-  const brands = Array.from(new Set(products.map((p) => p.brand))).sort();
+  const visibleProducts = dealsOnly ? allProducts.filter((p) => p.discount_price) : allProducts;
+  const topDeals = allProducts.filter((p) => p.discount_price).slice(0, 4);
+  const brands = Array.from(new Set(allProducts.map((p) => p.brand))).sort();
 
   return (
     <>
@@ -211,7 +218,11 @@ export default function ProductsPage() {
                 <div className="product-media">
                   {badge && <span className={`ribbon ribbon-${badge.tone}`}>{badge.label}</span>}
                   <span className="rating-pill">★ {product.rating_avg}</span>
-                  <ProductIcon seed={product.id} />
+                  {product.image_url ? (
+                    <img className="product-image" src={product.image_url} alt={product.name} />
+                  ) : (
+                    <ProductIcon seed={product.id} />
+                  )}
                 </div>
                 <div className="product-body">
                   <p className="brand">{product.brand} · {product.category_name}</p>
