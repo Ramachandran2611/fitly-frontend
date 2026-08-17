@@ -4,6 +4,7 @@ import ProductsPage from "./pages/ProductsPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import CartPage from "./pages/CartPage";
+import AddProductPage from "./pages/AddProductPage";
 import { useAuth } from "./context/AuthContext";
 import { apiGet } from "./api/client";
 import type { CartResponse } from "./types";
@@ -55,6 +56,13 @@ function App() {
           />
         </div>
         <nav>
+          <Link to="/">Home</Link>
+          <Link to="/#categories">Categories</Link>
+          <Link to="/#all-products">Products</Link>
+          <Link to="/?deals=1">Offers</Link>
+          <Link to="/?sort=newest">New Arrivals</Link>
+          <Link to="/#brands">Brands</Link>
+          <Link to="/add-product">Add Product</Link>
           <Link to="/cart" className="cart-link">
             Cart
             {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
@@ -72,6 +80,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/add-product" element={<AddProductPage />} />
         </Routes>
       </main>
     </div>

@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Logo from "../components/Logo";
+import HeroIllustration from "../components/HeroIllustration";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -25,6 +26,9 @@ export default function LoginPage() {
   return (
     <div className="auth-page">
       <form className="auth-card" onSubmit={handleSubmit}>
+        <div className="auth-card-media">
+          <HeroIllustration />
+        </div>
         <div className="auth-card-logo">
           <Logo />
           <span>FITLY</span>

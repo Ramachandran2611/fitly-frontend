@@ -284,6 +284,15 @@
   font-weight: 600;
   color: #fff;
   cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.category-tile svg {
+  color: var(--lime);
 }
 
 .category-tile.active {
@@ -329,6 +338,13 @@
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 14px;
+}
+
+.deal-card .deal-media {
+  display: flex;
+  justify-content: center;
+  padding: 6px 0 10px;
+  color: var(--lime);
 }
 
 .deal-card .deal-badge {
@@ -385,6 +401,12 @@
   padding: 26px 0;
   background: var(--surface-2);
   color: var(--text-muted);
+}
+
+.product-image {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
 }
 
 .ribbon {
@@ -561,6 +583,23 @@
   z-index: 2;
 }
 
+.auth-card-media {
+  height: 120px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin-bottom: 4px;
+}
+
+.auth-card-media svg {
+  height: 100%;
+  width: auto;
+}
+
 .auth-card-logo {
   display: flex;
   align-items: center;
@@ -672,6 +711,124 @@
   border-radius: 8px;
   font-size: 13px;
   text-align: center;
+}
+
+/* ---------- Add Product (practice page) ---------- */
+
+.practice-page {
+  max-width: 480px;
+  padding: 40px 0;
+}
+
+.practice-page h2 {
+  margin: 0 0 8px;
+  color: #fff;
+}
+
+.practice-hint {
+  color: var(--text-muted);
+  font-size: 13.5px;
+  margin: 0 0 24px;
+}
+
+.practice-hint code {
+  color: var(--lime);
+  background: var(--surface-2);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.practice-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.practice-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: #b7bdc7;
+  font-weight: 600;
+}
+
+.practice-form input,
+.practice-form textarea {
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-size: 14px;
+  background: var(--surface-2);
+  color: #fff;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.practice-form input:focus,
+.practice-form textarea:focus {
+  outline: none;
+  border-color: var(--lime);
+}
+
+.practice-form button {
+  padding: 13px;
+  border: none;
+  border-radius: 999px;
+  background: var(--lime);
+  color: var(--bg);
+  font-weight: 800;
+  font-size: 14.5px;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.practice-form button:hover {
+  background: var(--lime-dark);
+}
+
+.practice-form input[type="file"] {
+  padding: 8px 0;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+}
+
+.practice-image-holder {
+  width: 100%;
+  height: 160px;
+  border: 1.5px dashed var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.practice-image-holder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.practice-image-empty {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.practice-result {
+  margin-top: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  color: var(--lime);
+  font-size: 13px;
+  white-space: pre-wrap;
 }
 
 /* ---------- Cart ---------- */
