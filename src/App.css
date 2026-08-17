@@ -2,6 +2,15 @@
   max-width: 1080px;
   margin: 0 auto;
   padding: 0 24px 60px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ---------- Header ---------- */
@@ -510,22 +519,46 @@
 .auth-page {
   margin: 0 -24px;
   padding: 60px 24px 90px;
-  min-height: calc(100vh - 100px);
+  flex: 1;
+
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+
+  position: relative;
+  overflow: hidden;
+
+  /* Fitly gym background */
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(5, 8, 10, 0.25),
+      rgba(5, 8, 10, 0.78)
+    ),
+    url("/images/fitly-login-bg.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .auth-card {
   width: 100%;
   max-width: 380px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
+
+  /* No extra login-card background */
+  background: transparent;
+  border: none;
+  border-radius: 0;
+
   padding: 36px 32px;
+
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  position: relative;
+  z-index: 2;
 }
 
 .auth-card-logo {
@@ -567,6 +600,7 @@
   background: var(--surface-2);
   color: #fff;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .auth-card input:focus {
@@ -641,6 +675,7 @@
 }
 
 /* ---------- Cart ---------- */
+
 
 .cart {
   background: var(--surface);

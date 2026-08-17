@@ -66,7 +66,7 @@ function App() {
           )}
         </nav>
       </header>
-      <main>
+      <main className="app-main">
         <Routes>
           <Route path="/" element={<ProductsPage />} />
           <Route path="/login" element={<LoginPage />} />
