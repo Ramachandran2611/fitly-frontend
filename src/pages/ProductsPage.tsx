@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { apiGet, apiPost } from "../api/client";
 import { useAuth } from "../context/AuthContext";
 import ProductIcon from "../components/ProductIcon";
+import HeroIllustration from "../components/HeroIllustration";
 import type { Product } from "../types";
 
 interface Category {
@@ -93,7 +94,9 @@ export default function ProductsPage() {
             </button>
           </div>
         </div>
-        <div className="home-hero-media">product photo</div>
+        <div className="home-hero-media">
+          <HeroIllustration />
+        </div>
       </div>
 
       <div className="trust-bar">
