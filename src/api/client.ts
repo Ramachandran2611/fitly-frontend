@@ -9,7 +9,7 @@ async function handleResponse<T>(res: Response): Promise<T> {
   return body;
 }
 
-function authHeaders(token?: string) {
+function authHeaders(token?: string): Record<string, string> {
   return token ? { Authorization: `Bearer ${token}` } : {};
 }
 
