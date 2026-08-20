@@ -1050,3 +1050,161 @@
   font-weight: 800;
   color: var(--lime);
 }
+
+.checkout-btn {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 999px;
+  background: var(--lime);
+  color: var(--bg);
+  font-weight: 800;
+  font-size: 14.5px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.checkout-btn:hover {
+  background: var(--lime-dark);
+}
+
+/* ---------- Checkout / payment modal ---------- */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 8, 10, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 50;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 420px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  color: #fff;
+}
+
+.modal-card h3 {
+  margin: 0 0 16px;
+}
+
+.address-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.address-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  color: #d5d9e0;
+  cursor: pointer;
+}
+
+.address-option input {
+  margin-top: 3px;
+}
+
+.address-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.address-form input {
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-size: 14px;
+  background: var(--surface-2);
+  color: #fff;
+}
+
+.address-form input:focus {
+  outline: none;
+  border-color: var(--lime);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-actions button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.modal-actions button[type="submit"] {
+  background: var(--lime);
+  color: var(--bg);
+}
+
+.modal-actions button[type="submit"]:hover {
+  background: var(--lime-dark);
+}
+
+.modal-actions button[type="submit"]:disabled {
+  background: var(--border);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.modal-cancel {
+  background: none;
+  border: 1.5px solid var(--border) !important;
+  color: #fff;
+}
+
+.success-card {
+  text-align: center;
+}
+
+.success-check {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+  border-radius: 999px;
+  background: var(--success-bg);
+  color: var(--teal);
+  font-size: 28px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-card button {
+  width: 100%;
+  margin-top: 18px;
+  padding: 12px;
+  border: none;
+  border-radius: 999px;
+  background: var(--lime);
+  color: var(--bg);
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.success-card button:hover {
+  background: var(--lime-dark);
+}
