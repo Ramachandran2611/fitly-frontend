@@ -34,6 +34,7 @@ export default function ProductsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [addedId, setAddedId] = useState<number | null>(null);
+  const [cartError, setCartError] = useState<{ productId: number; message: string } | null>(null);
   const { token, isLoggedIn } = useAuth();
   const navigate = useNavigate();
 
@@ -83,16 +84,35 @@ export default function ProductsPage() {
     navigate("/?deals=1");
   }
 
-  async function addToCart(productId: number) {
+  async function addToCart(productId: number, isPractice: boolean) {
     if (!isLoggedIn) {
       navigate("/login");
       return;
     }
-    await apiPost("/cart", { productId: String(productId), quantity: 1 }, token ?? undefined);
-    setAddedId(productId);
-    setTimeout(() => setAddedId(null), 1500);
+
+    if (isPractice) {
+      setCartError({
+        productId,
+        message: "This is a practice product (saved locally) — it doesn't exist in the real database yet, so it can't be added to the cart.",
+      });
+      setTimeout(() => setCartError(null), 4000);
+      return;
+    }
+
+    try {
+      await apiPost("/cart", { productId: String(productId), quantity: 1 }, token ?? undefined);
+      setAddedId(productId);
+      setTimeout(() => setAddedId(null), 1500);
+    } catch (err) {
+      setCartError({
+        productId,
+        message: err instanceof Error ? err.message : "Could not add this product to the cart.",
+      });
+      setTimeout(() => setCartError(null), 4000);
+    }
   }
 
+  const practiceIds = new Set(practiceProducts.map((p) => p.id));
   const allProducts = [...practiceProducts, ...applyPracticeEdits(products)];
   const dealsOnly = searchParams.get("deals") === "1";
   const visibleProducts = dealsOnly ? allProducts.filter((p) => p.discount_price) : allProducts;
@@ -245,10 +265,13 @@ export default function ProductsPage() {
                   </p>
                   <button
                     disabled={product.stock_quantity === 0}
-                    onClick={() => addToCart(product.id)}
+                    onClick={() => addToCart(product.id, practiceIds.has(product.id))}
                   >
                     {addedId === product.id ? "Added ✓" : "Add to Cart"}
                   </button>
+                  {cartError?.productId === product.id && (
+                    <p className="cart-error">{cartError.message}</p>
+                  )}
                 </div>
               </div>
             );

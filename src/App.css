@@ -618,6 +618,16 @@
   cursor: not-allowed;
 }
 
+.cart-error {
+  margin: 8px 0 0;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--danger-bg);
+  color: var(--danger);
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
 /* ---------- Auth forms ---------- */
 
 .auth-page {
