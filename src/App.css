@@ -656,7 +656,10 @@
 /* ---------- Auth forms ---------- */
 
 .auth-page {
-  margin: 0 -24px;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
   padding: 60px 24px 90px;
   flex: 1;
 
@@ -664,7 +667,6 @@
   align-items: center;
   justify-content: flex-end;
 
-  position: relative;
   overflow: hidden;
 
   /* Fitly gym background */
