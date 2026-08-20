@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Logo from "../components/Logo";
 import HeroIllustration from "../components/HeroIllustration";
+import SocialAuthButtons from "../components/SocialAuthButtons";
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -64,6 +65,8 @@ export default function RegisterPage() {
         <p className="field-hint">Minimum 6 characters</p>
 
         <button type="submit" className="auth-submit">Sign up</button>
+
+        <SocialAuthButtons />
 
         <p className="auth-card-footer">
           Already have an account? <Link to="/login">Log in</Link>

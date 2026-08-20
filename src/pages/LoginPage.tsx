@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Logo from "../components/Logo";
 import HeroIllustration from "../components/HeroIllustration";
+import SocialAuthButtons from "../components/SocialAuthButtons";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -60,8 +61,11 @@ export default function LoginPage() {
             </button>
           </div>
         </label>
+        <Link to="/forgot-password" className="forgot-password-link">Forgot Password?</Link>
 
         <button type="submit" className="auth-submit">Login</button>
+
+        <SocialAuthButtons />
 
         <p className="auth-card-footer">
           Don't have an account? <Link to="/register">Sign up</Link>

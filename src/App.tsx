@@ -3,6 +3,7 @@ import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import ProductsPage from "./pages/ProductsPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import CartPage from "./pages/CartPage";
 import AddProductPage from "./pages/AddProductPage";
 import ProfileAvatar from "./components/ProfileAvatar";
@@ -83,6 +84,7 @@ function App() {
           <Route path="/" element={<ProductsPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/add-product" element={<AddProductPage />} />
         </Routes>
