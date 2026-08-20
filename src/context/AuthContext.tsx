@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { apiPost } from "../api/client";
 
 interface AuthContextValue {
@@ -15,6 +15,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [token, setToken] = useState<string | null>(() =>
     localStorage.getItem("fitly_token")
   );
+
+  // The browser's back/forward cache can restore a whole previous page
+  // snapshot (including its in-memory logged-in state) without re-running
+  // this component's mount logic. Forcing a reload on a bfcache restore
+  // makes the app re-read localStorage, so a logout can't be undone by
+  // clicking Back.
+  useEffect(() => {
+    function handlePageShow(event: PageTransitionEvent) {
+      if (event.persisted) {
+        window.location.reload();
+      }
+    }
+    window.addEventListener("pageshow", handlePageShow);
+    return () => window.removeEventListener("pageshow", handlePageShow);
+  }, []);
 
   async function login(email: string, password: string) {
     const res = await apiPost<{ token: string }>("/auth/login", { email, password });
