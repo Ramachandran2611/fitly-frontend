@@ -1,16 +1,16 @@
 :root {
   --lime: #c6ff3a;
   --lime-dark: #9fe000;
-  --teal: #00d3a0;
-  --danger: #ff6b6b;
-  --danger-bg: rgba(255, 107, 107, 0.14);
-  --success-bg: rgba(0, 211, 160, 0.14);
-  --bg: #0b0d10;
-  --surface: #16191e;
-  --surface-2: #1d2129;
-  --border: #262b33;
-  --text: #ffffff;
-  --text-muted: #9aa1ad;
+  --teal: #0c8a68;
+  --danger: #c23636;
+  --danger-bg: rgba(194, 54, 54, 0.12);
+  --success-bg: rgba(12, 138, 104, 0.12);
+  --bg: #eef6ee;
+  --surface: #ffffff;
+  --surface-2: #ddefd8;
+  --border: #cfe4cf;
+  --text: #14261a;
+  --text-muted: #5b7062;
   --font-display: "Fraunces", Georgia, serif;
   --font-body: "Segoe UI", system-ui, Roboto, sans-serif;
 }

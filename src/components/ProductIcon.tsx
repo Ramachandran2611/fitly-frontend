@@ -9,9 +9,9 @@ export default function ProductIcon({ seed, size = 88 }: { seed: number; size?: 
       aria-hidden="true"
       style={{ transform: `rotate(${tilt * 4}deg)` }}
     >
-      <rect x="20" y="18" width="80" height="112" rx="14" fill="rgba(255,255,255,0.92)" />
-      <rect x="20" y="18" width="80" height="34" rx="14" fill="rgba(255,255,255,0.6)" />
-      <rect x="42" y="4" width="36" height="18" rx="6" fill="rgba(255,255,255,0.85)" />
+      <rect x="20" y="18" width="80" height="112" rx="14" fill="rgba(20,38,26,0.14)" />
+      <rect x="20" y="18" width="80" height="34" rx="14" fill="rgba(20,38,26,0.07)" />
+      <rect x="42" y="4" width="36" height="18" rx="6" fill="rgba(20,38,26,0.22)" />
       <line x1="20" y1="70" x2="100" y2="70" stroke="currentColor" strokeOpacity="0.18" strokeWidth="3" />
       <line x1="20" y1="86" x2="100" y2="86" stroke="currentColor" strokeOpacity="0.12" strokeWidth="3" />
     </svg>
