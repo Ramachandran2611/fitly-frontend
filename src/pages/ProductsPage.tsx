@@ -5,6 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import ProductIcon from "../components/ProductIcon";
 import HeroIllustration from "../components/HeroIllustration";
 import CategoryTile from "../components/CategoryTile";
+import TrustBadges from "../components/TrustBadges";
 import { applyPracticeEdits, getPracticeProducts, onPracticeProductsChanged } from "../practiceProducts";
 import type { Product } from "../types";
 
@@ -146,11 +147,7 @@ export default function ProductsPage() {
         </div>
       </div>
 
-      <div className="trust-bar">
-        <span>Free shipping on orders above ₹999</span>
-        <span>Cash on delivery available</span>
-        <span>100% authentic, lab-tested supplements</span>
-      </div>
+      <TrustBadges />
 
       <p className="section-title" id="categories">Shop by category</p>
       <div className="category-tiles">
